@@ -35,7 +35,7 @@ Cleaning_Pump_pin = 12
 Circulator_pin = 13
 Cooling_Fan_pin = 13
 Pump_pin = 13
-tpr_pin = 14
+TPR_pin = 14
 
 #---SET SX1509----------------------------------------------------------
 addr = 0x3e
@@ -82,7 +82,7 @@ def cleaning_pump(val):
 
 #---Thyristor Power Regulator-------------------------------------------
 def tpr(val):
-	ctl.DOUT(tpr_pin,val)
+	ctl.DOUT(TPR_pin,val)
 
 #---Parse Data----------------------------------------------------------
 def json_to_val(json_val):
