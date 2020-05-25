@@ -2089,4 +2089,7 @@ function core_watchdog() {
                 set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
                 set_stirrer(TURN_OFF);
             }
+        }
+    }
+}
        
