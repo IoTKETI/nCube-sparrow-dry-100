@@ -63,3 +63,12 @@ $ cd /home/pi/nCube-sparrow-dry
 
 $ npm install
 ```
+
+## 4. Auto Start
+```
+$ sudo nano /etc/xdg/lxsession/LXDE-pi/autostart
+```
+```
+# Add start command
+sh /home/pi/nCube-sparrow-dry-100/auto-food.sh
+```
