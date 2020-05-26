@@ -101,7 +101,7 @@ def get_loadcell():
 		avg_weight = round((sum(weight_arr) / arr_count), 2)
 		final_weight = avg_weight - correlation_value
 		final_weight = max(0, float(final_weight))
-		# print('weight_arr: ', weight_arr)
+		#print('weight_arr: ', weight_arr)
 		#print('get_loadcell - correlation_value: ', correlation_value)
 		#print('get_loadcell - avg_weight: ', avg_weight)
 		print('get_loadcell - final_weight: ', final_weight)
@@ -308,7 +308,7 @@ def core_func():
 					#print("topic: ", g_recv_topic)
 					# weight = get_loadcell(correlation_value)
 					weight = get_loadcell()
-					#print(weight)
+					#print("weight: ", weight)
 					dry_client.publish("/res_weight", weight)
 				
 				elif (g_recv_topic == '/set_zero_point'):

@@ -1224,7 +1224,7 @@ function res_safe_door(val) {
 }
 
 function res_weight(val) {
-    //console.log('weight: ' + val);
+    console.log('weight: ' + val);
     dry_data_block.cur_weight = parseFloat(parseFloat(val.toString()).toFixed(1));
 
     if (pre_cur_weight != dry_data_block.cur_weight) {
