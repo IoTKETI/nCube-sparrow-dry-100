@@ -2089,7 +2089,271 @@ function core_watchdog() {
                 set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
                 set_stirrer(TURN_OFF);
             }
+            else {
+                if (dry_data_block.cur_weight < 0.5) {
+                    set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
+                    set_stirrer(TURN_OFF);
+
+                    set_buzzer();
+
+                    dry_data_block.state = 'INIT';
+                    pre_state = '';
+                    print_lcd_state();
+
+                    dry_data_block.elapsed_time = 0;
+
+                    // 스위치가 INPUT 모드로 되어 있다면
+                    set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
+                    set_stirrer(TURN_OFF);
+                }
+                else {
+                    if (contents_delay_count == 0) {
+                        dry_data_block.debug_message = 'Empty the contents';
+                        pre_debug_message = '';
+                        print_lcd_debug_message();
+                    }
+
+                    contents_delay_count++;
+                    if (contents_delay_count > 40) {
+                        contents_delay_count = 0;
+                    }
+                }
+            }
         }
+
+        setTimeout(core_watchdog, normal_interval);
     }
+
+    else if(dry_data_block.state == 'DEBUG') {
+        if(dryer_event & EVENT_START_BTN_CLICK) {
+            dryer_event &= ~EVENT_START_BTN_CLICK;
+
+            if(debug_mode_state == 'put_on_waiting') {
+
+                dry_data_block.debug_message = 'Calculating';
+                pre_debug_message = '';
+                print_lcd_debug_message();
+
+                req_calc_factor();
+            }
+        }
+        else if(dryer_event & EVENT_START_BTN_LONG) {
+            dryer_event &= ~EVENT_START_BTN_LONG;
+        }
+        else if(dryer_event & EVENT_INPUT_DOOR_OPEN) {
+            dryer_event &= ~EVENT_INPUT_DOOR_OPEN;
+        }
+        else if(dryer_event & EVENT_INPUT_DOOR_CLOSE) {
+            dryer_event &= ~EVENT_INPUT_DOOR_CLOSE;
+        }
+        else if(dryer_event & EVENT_OUTPUT_DOOR_OPEN) {
+            dryer_event &= ~EVENT_OUTPUT_DOOR_OPEN;
+        }
+        else if(dryer_event & EVENT_OUTPUT_DOOR_CLOSE) {
+            dryer_event &= ~EVENT_OUTPUT_DOOR_CLOSE;
+        }
+        else if(dryer_event & EVENT_SAFE_DOOR_OPEN) {
+            dryer_event &= ~EVENT_SAFE_DOOR_OPEN;
+        }
+        else if(dryer_event & EVENT_SAFE_DOOR_CLOSE) {
+            dryer_event &= ~EVENT_SAFE_DOOR_CLOSE;
+        }
+        else {
+            if (dry_data_block.debug_mode == 0) {
+                set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
+                set_stirrer(TURN_OFF);
+
+                set_buzzer();
+
+                console.log(dry_data_block.state);
+                dry_data_block.state = 'INIT';
+                pre_state = '';
+                print_lcd_state();
+                console.log('->' + dry_data_block.state);
+
+                dry_data_block.debug_message = ' ';
+                pre_debug_message = '';
+                print_lcd_debug_message();
+
+                dry_data_block.elapsed_time = 0;
+
+                pre_cur_weight = 9999;
+            }
+            else {
+                if (debug_mode_state == 'start') {
+                    console.log("Start zero point");
+
+                    dry_data_block.debug_message = 'Start zero point';
+                    pre_debug_message = '';
+                    print_lcd_debug_message();
+
+                    req_zero_point();
+
+                    debug_mode_state = 'start_waiting';
+
+                    setTimeout(core_watchdog, normal_interval);
+                }
+                else if (debug_mode_state == 'put_on') {
+                    dry_data_block.debug_message = 'Put weight on - ' + dry_data_block.loadcell_ref_weight;
+                    pre_debug_message = '';
+                    print_lcd_debug_message();
+
+                    debug_mode_state = 'put_on_waiting';
+
+                    setTimeout(core_watchdog, normal_interval);
+                }
+                else if (debug_mode_state == 'complete') {
+                    dry_data_block.debug_message = 'Complete zero point';
+                    pre_debug_message = '';
+                    print_lcd_debug_message();
+
+                    debug_mode_state = 'completed';
+
+                    var obj = {};
+                    obj.loadcell_factor = dry_data_block.loadcell_factor;
+                    obj.correlation_value = dry_data_block.correlation_value;
+                    send_to_Mobius(zero_mission_name, obj);
+                }
+                else {
+                }
+            }
+        }
+
+        setTimeout(core_watchdog, normal_interval);
+    }
+
+    else if(dry_data_block.state == 'EXCEPTION') {
+        if(dryer_event & EVENT_START_BTN_CLICK) {
+            dryer_event &= ~EVENT_START_BTN_CLICK;
+        }
+        else if(dryer_event & EVENT_START_BTN_LONG) {
+            dryer_event &= ~EVENT_START_BTN_LONG;
+        }
+        else if(dryer_event & EVENT_INPUT_DOOR_OPEN) {
+            dryer_event &= ~EVENT_INPUT_DOOR_OPEN;
+
+            dry_data_block.debug_message = 'Close input door';
+            pre_debug_message = '';
+            print_lcd_debug_message();
+            set_buzzer();
+        }
+        else if(dryer_event & EVENT_INPUT_DOOR_CLOSE) {
+            dryer_event &= ~EVENT_INPUT_DOOR_CLOSE;
+
+            dry_data_block.debug_message = ' ';
+            pre_debug_message = '';
+            print_lcd_debug_message();
+        }
+        else if(dryer_event & EVENT_OUTPUT_DOOR_OPEN) {
+            dryer_event &= ~EVENT_OUTPUT_DOOR_OPEN;
+
+            dry_data_block.debug_message = 'Close output door';
+            pre_debug_message = '';
+            print_lcd_debug_message();
+            set_buzzer();
+        }
+        else if(dryer_event & EVENT_OUTPUT_DOOR_CLOSE) {
+            dryer_event &= ~EVENT_OUTPUT_DOOR_CLOSE;
+
+            dry_data_block.debug_message = ' ';
+            pre_debug_message = '';
+            print_lcd_debug_message();
+        }
+        else if(dryer_event & EVENT_SAFE_DOOR_OPEN) {
+            dryer_event &= ~EVENT_SAFE_DOOR_OPEN;
+
+            dry_data_block.debug_message = 'Close safe door';
+            pre_debug_message = '';
+            print_lcd_debug_message();
+            set_buzzer();
+        }
+        else if(dryer_event & EVENT_SAFE_DOOR_CLOSE) {
+            dryer_event &= ~EVENT_SAFE_DOOR_CLOSE;
+
+            dry_data_block.debug_message = ' ';
+            pre_debug_message = '';
+            print_lcd_debug_message();
+        }
+        else {
+            if (dry_data_block.operation_mode == 1) {
+                if(input_mode_delay_count == 0) {
+                    dry_data_block.debug_message = 'Choose an INPUT mode';
+                    pre_debug_message = '';
+                    print_lcd_debug_message();
+                    set_buzzer();
+                }
+
+                input_mode_delay_count++;
+                if(input_mode_delay_count > 40) {
+                    input_mode_delay_count = 0;
+                }
+            }
+            else {
+                dry_data_block.pre_weight = dry_data_block.cur_weight;
+
+                fs.writeFileSync('ddb.json', JSON.stringify(dry_data_block, null, 4), 'utf8');
+
+                input_mode_delay_count = 0;
+                contents_delay_count = 0;
+
+                console.log(dry_data_block.state);
+                dry_data_block.state = 'INPUT';
+                pre_state = '';
+                print_lcd_state();
+                console.log('->' + dry_data_block.state);
+
+                dry_data_block.my_sortie_name = 'disarm';
+                send_to_Mobius(my_cnt_name, dry_data_block);
+
+                my_sortie_name = 'disarm';
+                my_cnt_name = my_parent_cnt_name + '/' + my_sortie_name;
+
+                set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
+                set_stirrer(TURN_OFF);
+
+                set_buzzer();
+            }
+        }
+
+        setTimeout(core_watchdog, normal_interval);
+    }
+
+    else {
+        setTimeout(core_watchdog, normal_interval);
+    }
+
+    //console.log('core watchdog');
 }
-       
+
+///////////////////////////////////////////////////////////////////////////////
+
+setTimeout(food_watchdog, 1000);
+
+function food_watchdog(){
+    //100ms동작
+    //실시간으로 변경되는상태값 저장
+    //roadcell_lunch() //roadcell측정
+
+    internal_temp_timer = setTimeout(req_internal_temp, parseInt(Math.random()*10));
+    //input_door_timer = setTimeout(req_input_door, parseInt(Math.random()*10));
+    //output_door_timer = setTimeout(req_output_door, parseInt(Math.random()*10));
+    //safe_door_timer = setTimeout(req_safe_door, parseInt(Math.random()*10));
+    weight_timer = setTimeout(req_weight, parseInt(Math.random()*10));
+    //operation_mode_timer = setTimeout(req_operation_mode, parseInt(Math.random()*10));
+    //debug_mode_timer = setTimeout(req_debug_mode, parseInt(Math.random()*10));
+    //start_btn_timer = setTimeout(req_start_btn, parseInt(Math.random()*10));
+
+    //console.log('food watchdog');
+}
+
+var func = {};
+func['res_zero_point'] = res_zero_point;
+func['res_calc_factor'] = res_calc_factor;
+func['res_internal_temp'] = res_internal_temp;
+func['res_input_door'] = res_input_door;
+func['res_output_door'] = res_output_door;
+func['res_safe_door'] = res_safe_door;
+func['res_weight'] = res_weight;
+func['res_operation_mode'] = res_operation_mode;
+func['res_debug_mode'] = res_debug_mode;
+func['res_start_btn'] = res_start_btn;
