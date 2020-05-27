@@ -65,8 +65,8 @@ const heater2_pin = 20;
 const heater3_pin = 21;
 const stirrer_pin = 22;
 
-const TURN_ON = 1;
-const TURN_OFF = 0;
+const TURN_ON = 0;
+const TURN_OFF = 1;
 const TURN_BACK = -1;
 
 var app = express();
