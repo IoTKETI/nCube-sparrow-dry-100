@@ -24,6 +24,7 @@ Start_btn_pin = 3
 Debug_switch_pin = 4
 
 # Digital OUT 
+TPR_pin = 6
 Heater_pin = 7
 Stirrer_pin = 8
 Lift_pin = 9
@@ -33,7 +34,6 @@ Cleaning_Pump_pin = 12
 Circulator_pin = 13
 Cooling_Fan_pin = 13
 Pump_pin = 13
-TPR_pin = 14
 
 #---SET SX1509----------------------------------------------------------
 addr = 0x3e
