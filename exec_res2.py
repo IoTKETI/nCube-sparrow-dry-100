@@ -42,8 +42,7 @@ ctl = Control.Control(sx)
 
 #---Heater--------------------------------------------------------------
 def heater(val):
-	ctl.DOUT(TPR_pin,1)
-	ctl.DOUT(TPR_pin,0)
+	ctl.DOUT(TPR_pin,val)
 	ctl.DOUT(Heater_pin,val)
 
 #---Stirrer-------------------------------------------------------------
