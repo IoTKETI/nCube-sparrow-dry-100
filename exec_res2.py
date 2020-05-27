@@ -24,9 +24,7 @@ Start_btn_pin = 3
 Debug_switch_pin = 4
 
 # Digital OUT 
-Heater12_pin = 5
-Heater3_pin = 6 
-Heater4_pin = 7
+Heater_pin = 7
 Stirrer_pin = 8
 Lift_pin = 9
 Lift2_pin = 10
@@ -43,10 +41,10 @@ sx = SX1509.SX1509(addr)
 ctl = Control.Control(sx)
 
 #---Heater--------------------------------------------------------------
-def heater(val,val2,val3):
-	ctl.DOUT(Heater12_pin,val)
-	ctl.DOUT(Heater3_pin,val2)
-	ctl.DOUT(Heater4_pin,val3)
+def heater(val):
+	ctl.DOUT(TPR_pin,1)
+	ctl.DOUT(TPR_pin,0)
+	ctl.DOUT(Heater_pin,val)
 
 #---Stirrer-------------------------------------------------------------
 def stirrer(val):
@@ -175,8 +173,8 @@ def mqtt_dequeue():
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
 				print('set_heater: ', data)
-				heat_val, heat_val2, heat_val3 = json_to_val(data)
-				heater(heat_val, heat_val2, heat_val3)
+				heat_val = json_to_val(data)
+				heater(heat_val)
 
 			elif (g_recv_topic == '/set_stirrer'):
 				#print("topic: ", g_recv_topic)
