@@ -42,7 +42,8 @@ ctl = Control.Control(sx)
 
 #---Heater--------------------------------------------------------------
 def heater(val):
-	ctl.DOUT(TPR_pin,val)
+	ctl.DOUT(TPR_pin,1)
+	ctl.DOUT(TPR_pin,0)
 	ctl.DOUT(Heater_pin,val)
 
 #---Stirrer-------------------------------------------------------------
@@ -52,14 +53,14 @@ def stirrer(val):
 #---Lift----------------------------------------------------------------
 def lift(val):
 	if (val == -1):
-		ctl.DOUT(Lift_pin,1)
-		ctl.DOUT(Lift2_pin,0)
-	elif (val == 0):
-		ctl.DOUT(Lift_pin,0)
-		ctl.DOUT(Lift2_pin,0)
-	else:
 		ctl.DOUT(Lift_pin,0)
 		ctl.DOUT(Lift2_pin,1)
+	elif (val == 0):
+		ctl.DOUT(Lift_pin,1)
+		ctl.DOUT(Lift2_pin,1)
+	else:
+		ctl.DOUT(Lift_pin,1)
+		ctl.DOUT(Lift2_pin,0)
 
 #---Crusher-------------------------------------------------------------
 def crusher(val):
