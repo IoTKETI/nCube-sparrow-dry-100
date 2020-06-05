@@ -1017,6 +1017,8 @@ var input_door_open_count = 0;
 const DOOR_OPEN = 1;
 const DOOR_CLOSE = 0;
 
+const BTN_PRESS = 1;
+
 function res_input_door(val) {
     var l_dec_val = parseInt(val.toString());
 //     console.log('\nl_dec_val: ' + l_dec_val);
@@ -1300,7 +1302,7 @@ var start_press_flag = 0;
 function res_start_btn(val) {
     var status = parseInt(val.toString());
 
-    if(status == 0) {
+    if(status == BTN_PRESS) {
         start_press_count++;
         if(start_press_count > 2) {
             start_press_flag = 1;
