@@ -1019,7 +1019,7 @@ const DOOR_CLOSE = 0;
 
 function res_input_door(val) {
     var l_dec_val = parseInt(val.toString());
-    console.log('\nl_dec_val: ' + l_dec_val);
+//     console.log('\nl_dec_val: ' + l_dec_val);
     var input_door = 0;
     var output_door = 0;
     var safe_door = 0;
@@ -1048,7 +1048,7 @@ function res_input_door(val) {
 
     var status = input_door;
 
-    console.log('in:' + status);
+//     console.log('in:' + status);
 
     if(status == DOOR_CLOSE) {
         input_door_close_count++;
@@ -1079,7 +1079,7 @@ function res_input_door(val) {
 
     status = output_door;
 
-    console.log('out:' + status);
+//     console.log('out:' + status);
 
     if(status == DOOR_CLOSE) {
         output_door_close_count++;
@@ -1110,7 +1110,7 @@ function res_input_door(val) {
 
     status = safe_door;
 
-    console.log('safe:' + status);
+//     console.log('safe:' + status);
 
     if(status == DOOR_CLOSE) {
         safe_door_close_count++;
@@ -1152,7 +1152,7 @@ var output_door_open_count = 0;
 function res_output_door(val) {
     var status = parseInt(val.toString());
 
-    console.log('out:' + status);
+//     console.log('out:' + status);
 
     if(status == DOOR_CLOSE) {
         output_door_close_count++;
@@ -1190,7 +1190,7 @@ var safe_door_open_count = 0;
 function res_safe_door(val) {
     var status = parseInt((val).toString());
 
-    console.log('safe:' + status);
+//     console.log('safe:' + status);
 
     if(status == DOOR_CLOSE) {
         safe_door_close_count++;
@@ -1224,7 +1224,7 @@ function res_safe_door(val) {
 }
 
 function res_weight(val) {
-    console.log('weight: ' + val);
+//     console.log('weight: ' + val);
     dry_data_block.cur_weight = parseFloat(parseFloat(val.toString()).toFixed(1));
 
     if (pre_cur_weight != dry_data_block.cur_weight) {
