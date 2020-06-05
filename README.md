@@ -57,9 +57,9 @@ $ node -v
 
 $ sudo npm install -g pm2
 
-$ git clone https://github.com/IoTKETI/nCube-sparrow-dry
+$ git clone https://github.com/IoTKETI/nCube-sparrow-dry-100
 
-$ cd /home/pi/nCube-sparrow-dry
+$ cd /home/pi/nCube-sparrow-dry-100
 
 $ npm install
 ```
