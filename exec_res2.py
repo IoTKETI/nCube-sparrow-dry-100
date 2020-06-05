@@ -42,6 +42,7 @@ ctl = Control.Control(sx)
 
 #---Heater--------------------------------------------------------------
 def heater(val):
+	print('heater value: ', val)
 	ctl.DOUT(TPR_pin,1)
 	ctl.DOUT(TPR_pin,0)
 	ctl.DOUT(Heater_pin,val)
@@ -78,9 +79,9 @@ def cooling_fan(val):
 def cleaning_pump(val):
 	ctl.DOUT(Cleaning_Pump_pin,val)
 
-#---Thyristor Power Regulator-------------------------------------------
-def tpr(val):
-	ctl.DOUT(TPR_pin,val)
+# #---Thyristor Power Regulator-------------------------------------------
+# def tpr(val):
+# 	ctl.DOUT(TPR_pin,val)
 
 #---Parse Data----------------------------------------------------------
 def json_to_val(json_val):
@@ -174,6 +175,7 @@ def mqtt_dequeue():
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
 				print('set_heater: ', data)
 				heat_val = json_to_val(data)
+				print('heat_val: ', heat_val)
 				heater(heat_val)
 
 			elif (g_recv_topic == '/set_stirrer'):
