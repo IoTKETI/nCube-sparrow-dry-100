@@ -1017,7 +1017,7 @@ var input_door_open_count = 0;
 const DOOR_OPEN = 1;
 const DOOR_CLOSE = 0;
 
-const BTN_PRESS = 1;
+const BTN_PRESS = 0;
 
 function res_input_door(val) {
     var l_dec_val = parseInt(val.toString());
