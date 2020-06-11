@@ -1013,6 +1013,10 @@ function res_internal_temp(val, val2) {
 
 var input_door_close_count = 0;
 var input_door_open_count = 0;
+var output_door_close_count = 0;
+var output_door_open_count = 0;
+var safe_door_close_count = 0;
+var safe_door_open_count = 0;
 
 const DOOR_OPEN = 0;
 const DOOR_CLOSE = 1;
