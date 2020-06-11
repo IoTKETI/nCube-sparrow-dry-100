@@ -1279,7 +1279,7 @@ var debug_release_count = 0;
 function res_debug_mode(val) {
     var status = parseInt(val.toString());
 
-    if(status == 0) {
+    if(status == 1) {
         debug_press_count++;
         debug_release_count = 0;
         if(debug_press_count > 2) {
