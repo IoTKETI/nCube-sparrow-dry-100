@@ -1025,7 +1025,7 @@ const BTN_PRESS = 0;
 
 function res_input_door(val) {
     var l_dec_val = parseInt(val.toString());
-    console.log('\nl_dec_val: ' + l_dec_val);
+//     console.log('\nl_dec_val: ' + l_dec_val);
     var input_door = 0;
     var output_door = 0;
     var safe_door = 0;
