@@ -1149,81 +1149,81 @@ function res_input_door(val) {
     //console.log(dry_data_block.input_door);
 }
 
-var output_door_close_count = 0;
-var output_door_open_count = 0;
-function res_output_door(val) {
-    var status = parseInt(val.toString());
-
-//     console.log('out:' + status);
-
-    if(status == DOOR_CLOSE) {
-        output_door_close_count++;
-        output_door_open_count = 0;
-        if(output_door_close_count > 2) {
-            output_door_close_count = 2;
-
-            if(dry_data_block.output_door == DOOR_OPEN) {
-                dryer_event |= EVENT_OUTPUT_DOOR_CLOSE;
-            }
-
-            dry_data_block.output_door = DOOR_CLOSE;
-        }
-    }
-    else {
-        output_door_close_count = 0;
-        output_door_open_count++;
-        if(output_door_open_count > 2) {
-            output_door_open_count = 2;
-
-            if(dry_data_block.output_door == DOOR_CLOSE) {
-                dryer_event |= EVENT_OUTPUT_DOOR_OPEN;
-            }
-
-            dry_data_block.output_door = DOOR_OPEN;
-        }
-    }
-
-    //clearTimeout(output_door_timer);
-    //output_door_timer = setTimeout(req_output_door, 100 + parseInt(Math.random() * 100));
-}
-
-var safe_door_close_count = 0;
-var safe_door_open_count = 0;
-function res_safe_door(val) {
-    var status = parseInt((val).toString());
-
-//     console.log('safe:' + status);
-
-    if(status == DOOR_CLOSE) {
-        safe_door_close_count++;
-        safe_door_open_count = 0;
-        if(safe_door_close_count > 2) {
-            safe_door_close_count = 2;
-
-            if(dry_data_block.safe_door == DOOR_OPEN) {
-                dryer_event |= EVENT_SAFE_DOOR_CLOSE;
-            }
-
-            dry_data_block.safe_door = DOOR_CLOSE;
-        }
-    }
-    else {
-        safe_door_close_count = 0;
-        safe_door_open_count++;
-        if(safe_door_open_count > 2) {
-            safe_door_open_count = 2;
-
-            if(dry_data_block.safe_door == DOOR_CLOSE) {
-                dryer_event |= EVENT_SAFE_DOOR_OPEN;
-            }
-
-            dry_data_block.safe_door = DOOR_OPEN;
-        }
-    }
-
-    //clearTimeout(safe_door_timer);
-    //safe_door_timer = setTimeout(req_safe_door, 100 + parseInt(Math.random() * 100));
-}
+// var output_door_close_count = 0;
+// var output_door_open_count = 0;
+// function res_output_door(val) {
+//     var status = parseInt(val.toString());
+//
+// //     console.log('out:' + status);
+//
+//     if(status == DOOR_CLOSE) {
+//         output_door_close_count++;
+//         output_door_open_count = 0;
+//         if(output_door_close_count > 2) {
+//             output_door_close_count = 2;
+//
+//             if(dry_data_block.output_door == DOOR_OPEN) {
+//                 dryer_event |= EVENT_OUTPUT_DOOR_CLOSE;
+//             }
+//
+//             dry_data_block.output_door = DOOR_CLOSE;
+//         }
+//     }
+//     else {
+//         output_door_close_count = 0;
+//         output_door_open_count++;
+//         if(output_door_open_count > 2) {
+//             output_door_open_count = 2;
+//
+//             if(dry_data_block.output_door == DOOR_CLOSE) {
+//                 dryer_event |= EVENT_OUTPUT_DOOR_OPEN;
+//             }
+//
+//             dry_data_block.output_door = DOOR_OPEN;
+//         }
+//     }
+//
+//     //clearTimeout(output_door_timer);
+//     //output_door_timer = setTimeout(req_output_door, 100 + parseInt(Math.random() * 100));
+// }
+//
+// var safe_door_close_count = 0;
+// var safe_door_open_count = 0;
+// function res_safe_door(val) {
+//     var status = parseInt((val).toString());
+//
+// //     console.log('safe:' + status);
+//
+//     if(status == DOOR_CLOSE) {
+//         safe_door_close_count++;
+//         safe_door_open_count = 0;
+//         if(safe_door_close_count > 2) {
+//             safe_door_close_count = 2;
+//
+//             if(dry_data_block.safe_door == DOOR_OPEN) {
+//                 dryer_event |= EVENT_SAFE_DOOR_CLOSE;
+//             }
+//
+//             dry_data_block.safe_door = DOOR_CLOSE;
+//         }
+//     }
+//     else {
+//         safe_door_close_count = 0;
+//         safe_door_open_count++;
+//         if(safe_door_open_count > 2) {
+//             safe_door_open_count = 2;
+//
+//             if(dry_data_block.safe_door == DOOR_CLOSE) {
+//                 dryer_event |= EVENT_SAFE_DOOR_OPEN;
+//             }
+//
+//             dry_data_block.safe_door = DOOR_OPEN;
+//         }
+//     }
+//
+//     //clearTimeout(safe_door_timer);
+//     //safe_door_timer = setTimeout(req_safe_door, 100 + parseInt(Math.random() * 100));
+// }
 
 function res_weight(val) {
 //     console.log('weight: ' + val);
