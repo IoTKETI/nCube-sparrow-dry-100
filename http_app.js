@@ -1021,7 +1021,7 @@ const BTN_PRESS = 0;
 
 function res_input_door(val) {
     var l_dec_val = parseInt(val.toString());
-//     console.log('\nl_dec_val: ' + l_dec_val);
+    console.log('\nl_dec_val: ' + l_dec_val);
     var input_door = 0;
     var output_door = 0;
     var safe_door = 0;
@@ -1050,7 +1050,7 @@ function res_input_door(val) {
 
     var status = input_door;
 
-//     console.log('in:' + status);
+    console.log('in:' + status);
 
     if(status == DOOR_CLOSE) {
         input_door_close_count++;
@@ -1081,7 +1081,7 @@ function res_input_door(val) {
 
     status = output_door;
 
-//     console.log('out:' + status);
+    console.log('out:' + status);
 
     if(status == DOOR_CLOSE) {
         output_door_close_count++;
@@ -1112,7 +1112,7 @@ function res_input_door(val) {
 
     status = safe_door;
 
-//     console.log('safe:' + status);
+    console.log('safe:' + status);
 
     if(status == DOOR_CLOSE) {
         safe_door_close_count++;
