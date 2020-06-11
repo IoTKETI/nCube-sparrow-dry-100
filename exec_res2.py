@@ -67,13 +67,11 @@ def lift(val):
 def crusher(val):
 	ctl.DOUT(Crusher_pin,val)
 
-#---Circulator----------------------------------------------------------
-def circulator(val):
-	ctl.DOUT(Circulator_pin,val)
-	
 #---Cooling_Fan---------------------------------------------------------
 def cooling_fan(val):
 	ctl.DOUT(Cooling_Fan_pin,val)
+	ctl.DOUT(Circulator_pin,val)
+	ctl.DOUT(Pump_pin,val)
 	
 #---Cleaning_Pump-------------------------------------------------------
 def cleaning_pump(val):
@@ -161,7 +159,6 @@ def mqtt_dequeue():
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
 				print('set_solenoid: ', data)
 				solenoid_val = json_to_val(data)
-				circulator(solenoid_val)
 
 			elif (g_recv_topic == '/set_fan'):
 				#print("topic: ", g_recv_topic)
