@@ -1347,13 +1347,13 @@ function always_watchdog() {
     // - 내부온도 60도 이상 순환팬과 열교환기 냉각팬, 펌프 온
     // - 내부온도 60도 미만 순환팬과 열교환기 냉각팬, 펌프 오프
 
-    if(parseFloat(dry_data_block.internal_temp) < 60.0) {
+    if(parseFloat(dry_data_block.internal_temp) < 30.0) {
         // 순환팬 오프
         // 열교환기 냉각팬 오프
 
         set_fan(TURN_OFF);
     }
-    else if(parseFloat(dry_data_block.internal_temp) >= 60.0) {
+    else if(parseFloat(dry_data_block.internal_temp) >= 30.0) {
         // 순환팬 온
         // 열교환기 냉각팬 온
 
