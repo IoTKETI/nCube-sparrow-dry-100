@@ -59,7 +59,7 @@ def lift(val):
 	elif (val == 0):
 		ctl.DOUT(Lift_pin,1)
 		ctl.DOUT(Lift2_pin,1)
-	else:
+	elif (val == 1):
 		ctl.DOUT(Lift_pin,1)
 		ctl.DOUT(Lift2_pin,0)
 
