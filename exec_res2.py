@@ -63,18 +63,28 @@ def lift(val):
 # 		ctl.DOUT(Lift_pin,1)
 # 		ctl.DOUT(Lift2_pin,0)
 
+# 	if (val == -1):
+# 		ctl.DOUT(Lift_pin,1)
+# 		ctl.DOUT(Lift2_pin,0)
+# 	elif (val == 0):
+# 		ctl.DOUT(Lift_pin,0)
+# 		ctl.DOUT(Lift2_pin,0)
+# 	elif (val == 1):
+# 		ctl.DOUT(Lift_pin,0)
+# 		ctl.DOUT(Lift2_pin,1)
+
 	if (val == -1):
-		ctl.DOUT(Lift_pin,1)
-		ctl.DOUT(Lift2_pin,0)
+		ctl.DOUT(Lift_pin,0)
+		ctl.DOUT(Lift2_pin,1)
 	elif (val == 0):
 		ctl.DOUT(Lift_pin,0)
 		ctl.DOUT(Lift2_pin,0)
 	elif (val == 1):
-		ctl.DOUT(Lift_pin,0)
-		ctl.DOUT(Lift2_pin,1)
+		ctl.DOUT(Lift_pin,1)
+		ctl.DOUT(Lift2_pin,0)
 
 	print("Lift: ", val)
-	
+
 #---Crusher-------------------------------------------------------------
 def crusher(val):
 	ctl.DOUT(Crusher_pin,val)
