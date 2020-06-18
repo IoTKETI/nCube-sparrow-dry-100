@@ -54,14 +54,14 @@ def stirrer(val):
 #---Lift----------------------------------------------------------------
 def lift(val):
 	if (val == -1):
-		ctl.DOUT(Lift_pin,0)
-		ctl.DOUT(Lift2_pin,1)
-	elif (val == 0):
-		ctl.DOUT(Lift_pin,1)
-		ctl.DOUT(Lift2_pin,1)
-	elif (val == 1):
 		ctl.DOUT(Lift_pin,1)
 		ctl.DOUT(Lift2_pin,0)
+	elif (val == 0):
+		ctl.DOUT(Lift_pin,0)
+		ctl.DOUT(Lift2_pin,0)
+	elif (val == 1):
+		ctl.DOUT(Lift_pin,0)
+		ctl.DOUT(Lift2_pin,1)
 
 #---Crusher-------------------------------------------------------------
 def crusher(val):
