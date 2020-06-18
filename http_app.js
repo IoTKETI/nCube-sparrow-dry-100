@@ -67,9 +67,7 @@ const stirrer_pin = 22;
 
 const TURN_ON = 0;
 const TURN_OFF = 1;
-const LIFT_TURN_ON = 1;
-const LIFT_TURN_OFF = 0;
-const LIFT_TURN_BACK = -1;
+const TURN_BACK = -1;
 
 var app = express();
 
@@ -1411,55 +1409,55 @@ var core_delay_count = 0;
 var lift_seq = 0;
 function lifting() {
     if(lift_seq == 0) {
-        set_lift(LIFT_TURN_OFF);
+        set_lift(TURN_OFF);
 
         lift_seq = 1;
         setTimeout(lifting, 10);
     }
     else if(lift_seq == 1) {
-        set_lift(LIFT_TURN_ON);
+        set_lift(TURN_ON);
 
         lift_seq = 2;
         setTimeout(lifting, 20000);
     }
     else if(lift_seq == 2) {
-        set_lift(LIFT_TURN_OFF);
+        set_lift(TURN_OFF);
 
         lift_seq = 3;
         setTimeout(lifting, 10);
     }
     else if(lift_seq == 3) {
-        set_lift(LIFT_TURN_BACK);
+        set_lift(TURN_BACK);
 
         lift_seq = 4;
         setTimeout(lifting, 2000);
     }
     else if(lift_seq == 4) {
-        set_lift(LIFT_TURN_OFF);
+        set_lift(TURN_OFF);
 
         lift_seq = 5;
         setTimeout(lifting, 10);
     }
     else if(lift_seq == 5) {
-        set_lift(LIFT_TURN_ON);
+        set_lift(TURN_ON);
 
         lift_seq = 6;
         setTimeout(lifting, 5000);
     }
     else if(lift_seq == 6) {
-        set_lift(LIFT_TURN_OFF);
+        set_lift(TURN_OFF);
 
         lift_seq = 7;
         setTimeout(lifting, 10);
     }
     else if(lift_seq == 7) {
-        set_lift(LIFT_TURN_BACK);
+        set_lift(TURN_BACK);
 
         lift_seq = 8;
         setTimeout(lifting, 16000);
     }
     else if(lift_seq == 8) {
-        set_lift(LIFT_TURN_OFF);
+        set_lift(TURN_OFF);
 
         lift_seq = 0;
     }
@@ -1506,7 +1504,7 @@ function core_watchdog() {
         if(core_delay_count == 0) {
             set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
             set_stirrer(TURN_OFF);
-            set_lift(LIFT_TURN_BACK);
+            set_lift(TURN_BACK);
             set_crusher(TURN_OFF);
             set_cleaning_pump(TURN_OFF);
         }
@@ -1652,7 +1650,7 @@ function core_watchdog() {
                     if (dry_data_block.input_door == 0) {
                         set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
                         set_stirrer(TURN_ON);
-                        set_lift(LIFT_TURN_BACK);
+                        set_lift(TURN_BACK);
                         set_crusher(TURN_OFF);
                         set_cleaning_pump(TURN_OFF);
 
