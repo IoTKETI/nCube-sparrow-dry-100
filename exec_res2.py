@@ -73,8 +73,8 @@ def lift(val):
 		ctl.DOUT(Lift_pin,0)
 		ctl.DOUT(Lift2_pin,1)
 
-    print("Lift: ", val)
-
+	print("Lift: ", val)
+	
 #---Crusher-------------------------------------------------------------
 def crusher(val):
 	ctl.DOUT(Crusher_pin,val)
