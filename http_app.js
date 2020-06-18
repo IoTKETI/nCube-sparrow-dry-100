@@ -1418,7 +1418,7 @@ function lifting() {
         set_lift(TURN_ON);
 
         lift_seq = 2;
-        setTimeout(lifting, 15000);
+        setTimeout(lifting, 20000);
     }
     else if(lift_seq == 2) {
         set_lift(TURN_OFF);
