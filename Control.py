@@ -46,15 +46,15 @@ class Control:
                         shift = shift - 8
                         reg = self.sx.RegDataB
                 if(on):
-                        print('reg:', self.sx.read(reg))
-                        print('shift:', bin(1 << shift))
-                        print('result: ', self.sx.read(reg) | 1 << shift)
+#                         print('reg:', self.sx.read(reg))
+#                         print('shift:', bin(1 << shift))
+#                         print('result: ', self.sx.read(reg) | 1 << shift)
                         self.sx.write(reg, self.sx.read(reg) | 1 << shift)
                         
                 else:
-                        print('reg:', self.sx.read(reg))
-                        print('shift:', bin(1 << shift))
-                        print('result: ', self.sx.read(reg) & ~ (1 << shift))
+#                         print('reg:', self.sx.read(reg))
+#                         print('shift:', bin(1 << shift))
+#                         print('result: ', self.sx.read(reg) & ~ (1 << shift))
                         self.sx.write(reg, self.sx.read(reg) & ~ (1 << shift))
 
         def __digitalIn(self, id: int):

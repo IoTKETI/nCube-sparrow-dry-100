@@ -83,8 +83,6 @@ def lift(val):
 		ctl.DOUT(Lift_pin,1)
 		ctl.DOUT(Lift2_pin,0)
 
-	print("Lift: ", val)
-
 #---Crusher-------------------------------------------------------------
 def crusher(val):
 	ctl.DOUT(Crusher_pin,val)
@@ -179,28 +177,28 @@ def mqtt_dequeue():
 			if (g_recv_topic == '/set_solenoid'):
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
-				print('set_solenoid: ', data)
+# 				print('set_solenoid: ', data)
 				solenoid_val = json_to_val(data)
 
 			elif (g_recv_topic == '/set_fan'):
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
-				print('set_fan: ', data)
+# 				print('set_fan: ', data)
 				fan_val = json_to_val(data)
 				cooling_fan(fan_val)
 
 			elif (g_recv_topic == '/set_heater'):
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
-				print('set_heater: ', data)
+# 				print('set_heater: ', data)
 				heat_val = json_to_val(data)
-				print('heat_val: ', heat_val)
+# 				print('heat_val: ', heat_val)
 				heater(heat_val)
 
 			elif (g_recv_topic == '/set_stirrer'):
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
-				print('set_stirrer: ', data)
+# 				print('set_stirrer: ', data)
 				stirrer_val = json_to_val(data)
 				stirrer(stirrer_val)
 
@@ -214,14 +212,14 @@ def mqtt_dequeue():
 			elif (g_recv_topic == '/set_crusher'):
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
-				print('set_crusher: ', data)
+# 				print('set_crusher: ', data)
 				crusher_val = json_to_val(data)
 				crusher(crusher_val)
 
 			elif (g_recv_topic == '/set_cleaning_pump'):
 				#print("topic: ", g_recv_topic)
 				data = recv_msg.payload.decode('utf-8').replace("'", '"')
-				print('set_cleaning_pump: ', data)
+# 				print('set_cleaning_pump: ', data)
 				cleaning_pump_val = json_to_val(data)
 				cleaning_pump(cleaning_pump_val)
 			
@@ -242,8 +240,8 @@ def core_func():
 			
 			l_dec_val = ctl.DIN(0)
 			
-			print("\n")
-			print(l_dec_val&0x1f)
+# 			print("\n")
+# 			print(l_dec_val&0x1f)
 			
 			json_input_door = val_to_json(l_dec_val)
 			
