@@ -1430,7 +1430,7 @@ function lifting() {
         set_lift(TURN_BACK);
 
         lift_seq = 4;
-        setTimeout(lifting, 2000);
+        setTimeout(lifting, 1000);
     }
     else if(lift_seq == 4) {
         set_lift(TURN_OFF);
@@ -1982,7 +1982,7 @@ function core_watchdog() {
             dryer_event &= ~EVENT_SAFE_DOOR_CLOSE;
         }
         else {
-            if(parseFloat(dry_data_block.external_temp) < 400.0 && parseFloat(dry_data_block.internal_temp) < 90.0) {
+            if(parseFloat(dry_data_block.external_temp) < 350.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
                 set_heater(TURN_ON, TURN_ON, TURN_ON);
                 set_stirrer(TURN_ON);
             }
