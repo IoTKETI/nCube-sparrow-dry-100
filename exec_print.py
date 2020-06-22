@@ -73,30 +73,44 @@ def lcd_init():
 
 def displayState(msg1):
 # 	print("State: ", msg1)
-	if (len(str(msg1)) > 5):
-		msg1 = str(msg1)
-		msg1 = msg1[0:5]
+#	if (len(str(msg1)) > 5):
+#		msg1 = str(msg1)
+#		msg1 = msg1[0:5]
+	prev_state = 'START'
+	g_lcd.cursor_position(0,0)
+	g_lcd.message = f'{prev_state}'
 	try:
-		if (msg1 == 'DEBUG'):
-			g_lcd.clear()
-		g_lcd.cursor_position(0,0)
-		message = '     '
-		g_lcd.message = message
-		g_lcd.cursor_position(0,0)
-		g_lcd.message = f'{msg1}'
+		if (prev_state != msg1):
+			if (msg1 == 'DEBUG'):
+				g_lcd.clear()
+			elif(msg1 == 'TARGETING'):
+				g_lcd.clear()
+				msg1 = 'TARGET'
+			elif(msg1 == 'EXCEPTION'):
+				g_lcd.clear()
+				msg1 = 'EXCEPT'
+			# g_lcd.cursor_position(0,0)
+			# message = '     '
+			# g_lcd.message = message
+			g_lcd.cursor_position(0,0)
+			g_lcd.message = f'{msg1}'
 	except OSError:
 		lcd_init()
-		if (msg1 == 'DEBUG'):
-			g_lcd.clear()
-		g_lcd.cursor_position(0,0)
-		message = '     '
-		g_lcd.message = message
-		g_lcd.cursor_position(0,0)
-		g_lcd.message = f'{msg1}'
+		if (prev_state != msg1):
+			if (msg1 == 'DEBUG'):
+				g_lcd.clear()
+			elif(msg1 == 'TARGETING'):
+				g_lcd.clear()
+				msg1 = 'TARGET'
+			elif(msg1 == 'EXCEPTION'):
+				g_lcd.clear()
+				msg1 = 'EXCEPT'
+			g_lcd.cursor_position(0,0)
+			g_lcd.message = f'{msg1}'
 
 
 def displayTemp(msg1, msg2):
-    print("Temperature: ", msg1, ", ", msg2)
+	print("Temperature: ", msg1, ", ", msg2)
 	if (len(str(msg1)) > 5):
 		msg1 = str(msg1)
 		msg1 = msg1[0:5]
