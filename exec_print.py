@@ -73,6 +73,7 @@ def lcd_init():
 
 def displayState(msg1):
 # 	print("State: ", msg1)
+<<<<<<< Updated upstream
 #	if (len(str(msg1)) > 5):
 #		msg1 = str(msg1)
 #		msg1 = msg1[0:5]
@@ -84,26 +85,27 @@ def displayState(msg1):
 			if (msg1 == 'DEBUG'):
 				g_lcd.clear()
 			elif(msg1 == 'TARGETING'):
-				g_lcd.clear()
+# 				g_lcd.clear()
 				msg1 = 'TARGET'
 			elif(msg1 == 'EXCEPTION'):
-				g_lcd.clear()
+# 				g_lcd.clear()
 				msg1 = 'EXCEPT'
-			# g_lcd.cursor_position(0,0)
-			# message = '     '
-			# g_lcd.message = message
+			g_lcd.cursor_position(0,0)
+			message = '     '
+			g_lcd.message = message
 			g_lcd.cursor_position(0,0)
 			g_lcd.message = f'{msg1}'
+
 	except OSError:
 		lcd_init()
 		if (prev_state != msg1):
 			if (msg1 == 'DEBUG'):
 				g_lcd.clear()
 			elif(msg1 == 'TARGETING'):
-				g_lcd.clear()
+# 				g_lcd.clear()
 				msg1 = 'TARGET'
 			elif(msg1 == 'EXCEPTION'):
-				g_lcd.clear()
+# 				g_lcd.clear()
 				msg1 = 'EXCEPT'
 			g_lcd.cursor_position(0,0)
 			g_lcd.message = f'{msg1}'
