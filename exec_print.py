@@ -72,7 +72,7 @@ def lcd_init():
 
 
 def displayState(msg1):
-	print("State: ", msg1)
+# 	print("State: ", msg1)
 	if (len(str(msg1)) > 5):
 		msg1 = str(msg1)
 		msg1 = msg1[0:5]
