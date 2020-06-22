@@ -82,15 +82,15 @@ def displayState(msg1):
 	g_lcd.message = f'{prev_state}'
 	try:
 # 		if (prev_state != msg1):
-        if (msg1 == 'DEBUG'):
+		if (msg1 == 'DEBUG'):
             g_lcd.clear()
-        elif(msg1 == 'TARGETING'):
+		elif(msg1 == 'TARGETING'):
 # 				g_lcd.clear()
             msg1 = 'TARGET'
-        elif(msg1 == 'EXCEPTION'):
+		elif(msg1 == 'EXCEPTION'):
 # 				g_lcd.clear()
             msg1 = 'EXCEPT'
-        g_lcd.cursor_position(0,0)
+		g_lcd.cursor_position(0,0)
         message = '       '
         g_lcd.message = message
         g_lcd.cursor_position(0,0)
@@ -99,12 +99,12 @@ def displayState(msg1):
 	except OSError:
 		lcd_init()
 # 		if (prev_state != msg1):
-        if (msg1 == 'DEBUG'):
+		if (msg1 == 'DEBUG'):
             g_lcd.clear()
-        elif(msg1 == 'TARGETING'):
+		elif(msg1 == 'TARGETING'):
 # 				g_lcd.clear()
             msg1 = 'TARGET'
-        elif(msg1 == 'EXCEPTION'):
+		elif(msg1 == 'EXCEPTION'):
 # 				g_lcd.clear()
             msg1 = 'EXCEPT'
         g_lcd.cursor_position(0,0)
