@@ -131,4 +131,5 @@ def core_func():
 		mqtt_dequeue()
 
 if __name__ == "__main__":
+	print("Start exec_buzzer.py...")
 	core_func()

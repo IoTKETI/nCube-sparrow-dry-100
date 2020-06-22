@@ -230,4 +230,5 @@ def core_func():
 		mqtt_dequeue()
 
 if __name__ == "__main__":
+	print("Start exec_res2.py...")
 	core_func()

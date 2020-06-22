@@ -423,4 +423,5 @@ def core_func():
 
 
 if __name__ == "__main__":
+	print("Start exec_print.py...")
 	core_func()

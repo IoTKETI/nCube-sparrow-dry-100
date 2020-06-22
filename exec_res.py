@@ -325,4 +325,5 @@ def core_func():
 			q.task_done()
 
 if __name__ == "__main__":
+	print("Start exec_res.py...")
 	core_func()
