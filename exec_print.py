@@ -131,7 +131,7 @@ def displayTemp(msg1, msg2):
 				
 		
 def displayLoadcell(msg1, msg2):
-    print("LoadCell: ", msg1, ", ", msg2)
+	print("LoadCell: ", msg1, ", ", msg2)
 	if (len(str(msg1)) > 5):
 		msg1 = str(msg1)
 		msg1 = msg1[0:5]
