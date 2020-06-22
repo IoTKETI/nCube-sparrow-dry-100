@@ -73,15 +73,10 @@ def lcd_init():
 
 def displayState(msg1):
 # 	print("State: ", msg1)
-<<<<<<< Updated upstream
 #	if (len(str(msg1)) > 5):
 #		msg1 = str(msg1)
 #		msg1 = msg1[0:5]
-	prev_state = 'START'
-	g_lcd.cursor_position(0,0)
-	g_lcd.message = f'{prev_state}'
 	try:
-# 		if (prev_state != msg1):
 		if (msg1 == 'DEBUG'):
 			g_lcd.clear()
 		elif(msg1 == 'TARGETING'):
@@ -98,7 +93,6 @@ def displayState(msg1):
 
 	except OSError:
 		lcd_init()
-# 		if (prev_state != msg1):
 		if (msg1 == 'DEBUG'):
 			g_lcd.clear()
 		elif(msg1 == 'TARGETING'):
@@ -133,7 +127,7 @@ def displayTemp(msg1, msg2):
 		g_lcd.message = message
 		g_lcd.cursor_position(14,0)
 		g_lcd.message = f'{msg2}'
-	
+
 	except OSError:
 		lcd_init()
 		g_lcd.cursor_position(8,0)
@@ -147,8 +141,8 @@ def displayTemp(msg1, msg2):
 		g_lcd.cursor_position(14,0)
 		g_lcd.message = f'{msg2}'
 
-				
-		
+
+
 def displayLoadcell(msg1, msg2):
 	print("LoadCell: ", msg1, ", ", msg2)
 	if (len(str(msg1)) > 5):
@@ -163,13 +157,13 @@ def displayLoadcell(msg1, msg2):
 		g_lcd.message = message
 		g_lcd.cursor_position(0,1)
 		g_lcd.message = f'{msg1}'
-		
+
 		g_lcd.cursor_position(10,1)
 		message = '          '
 		g_lcd.message = message
 		g_lcd.cursor_position(10,1)
 		g_lcd.message = f'{msg2}'
-	
+
 	except OSError:
 		lcd_init()
 		g_lcd.cursor_position(0,1)
@@ -177,7 +171,7 @@ def displayLoadcell(msg1, msg2):
 		g_lcd.message = message
 		g_lcd.cursor_position(0,1)
 		g_lcd.message = f'{msg1}'
-		
+
 		g_lcd.cursor_position(10,1)
 		message = '          '
 		g_lcd.message = message
@@ -196,7 +190,7 @@ def displayLoadcellFactor(msg1):
 		g_lcd.message = message
 		g_lcd.cursor_position(13,1)
 		g_lcd.message = f'{msg1}'
-	
+
 	except OSError:
 		lcd_init()
 		g_lcd.cursor_position(13,1)
@@ -217,14 +211,14 @@ def displayInputDoor(msg1):
 		g_lcd.cursor_position(15,2)
 		g_lcd.message = f'{msg1}'
 	except OSError:
-		lcd_init()		
+		lcd_init()
 		g_lcd.cursor_position(15,2)
 		message = ' '
 		g_lcd.message = message
 		g_lcd.cursor_position(15,2)
 		g_lcd.message = f'{msg1}'
-		
-		
+
+
 def displayOutputDoor(msg1):
 	print(msg1)
 	if (len(str(msg1)) > 1):
@@ -238,14 +232,14 @@ def displayOutputDoor(msg1):
 		g_lcd.cursor_position(17,2)
 		g_lcd.message = f'{msg1}'
 	except OSError:
-		lcd_init()	
+		lcd_init()
 		g_lcd.cursor_position(17,2)
 		message = ' '
 		g_lcd.message = message
 		g_lcd.cursor_position(17,2)
 		g_lcd.message = f'{msg1}'
-		
-		
+
+
 def displaySafeDoor(msg1):
 	if (len(str(msg1)) > 1):
 		msg1 = str(msg1)
@@ -257,7 +251,7 @@ def displaySafeDoor(msg1):
 		g_lcd.cursor_position(19,2)
 		g_lcd.message = f'{msg1}'
 	except OSError:
-		lcd_init()	
+		lcd_init()
 		g_lcd.cursor_position(19,2)
 		message = ' '
 		g_lcd.message = message
@@ -276,7 +270,7 @@ def displayElapsed(msg1):
 		g_lcd.cursor_position(0,2)
 		g_lcd.message = f'{msg1}'
 	except OSError:
-		lcd_init()	
+		lcd_init()
 		g_lcd.cursor_position(0,2)
 		message = '       '
 		g_lcd.message = message
@@ -294,7 +288,7 @@ def displayMsg(msg1):
 		g_lcd.message = message
 		g_lcd.cursor_position(0,3)
 		g_lcd.message = f'{msg1}'
-	
+
 	except OSError:
 		lcd_init()
 		g_lcd.cursor_position(0,3)

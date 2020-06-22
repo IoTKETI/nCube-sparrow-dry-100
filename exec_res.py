@@ -46,8 +46,8 @@ def get_temp():
 		bottom_temp_arr[arr_count-1] = bottom_temp
 		top_temp_arr[arr_count-1] = top_temp
 
-	avg_bottom_temp = round((sum(bottom_temp_arr) / arr_count), 2)
-	avg_top_temp = round((sum(top_temp_arr) / arr_count), 2)
+	avg_bottom_temp = round((sum(bottom_temp_arr) / arr_count), 1)
+	avg_top_temp = round((sum(top_temp_arr) / arr_count), 1)
 
 	temperature1 = val_to_json(avg_top_temp, avg_bottom_temp)
 
