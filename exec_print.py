@@ -86,8 +86,6 @@ def displayState(msg1):
 			msg1 = 'TARGET'
 		elif(msg1 == 'EXCEPTION'):
 			msg1 = 'EXCEPT'
-		elif(msg1 == 'INPUT'):
-			g_lcd.clear()
 		g_lcd.cursor_position(0,0)
 		message = '       '
 		g_lcd.message = message
@@ -102,8 +100,6 @@ def displayState(msg1):
 			msg1 = 'TARGET'
 		elif(msg1 == 'EXCEPTION'):
 			msg1 = 'EXCEPT'
-		elif(msg1 == 'INPUT'):
-			g_lcd.clear()
 		g_lcd.cursor_position(0,0)
 		message = '       '
 		g_lcd.message = message
