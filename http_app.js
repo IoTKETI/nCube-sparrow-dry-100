@@ -1359,6 +1359,19 @@ function always_watchdog() {
 
         set_fan(TURN_ON);
     }
+    
+    if(dry_data_block.state == 'INPUT') {
+        set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
+    }
+    
+    else if(dry_data_block.state == 'HEAT') {
+        if(parseFloat(dry_data_block.external_temp) < 280.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
+            set_heater(TURN_ON, TURN_ON, TURN_ON);
+        }
+        else {
+            set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
+        }
+    }
 
     setTimeout(always_watchdog, always_interval);
 }
@@ -1982,7 +1995,7 @@ function core_watchdog() {
             dryer_event &= ~EVENT_SAFE_DOOR_CLOSE;
         }
         else {
-            if(parseFloat(dry_data_block.external_temp) < 350.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
+            if(parseFloat(dry_data_block.external_temp) < 280.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
                 set_heater(TURN_ON, TURN_ON, TURN_ON);
                 set_stirrer(TURN_ON);
             }
