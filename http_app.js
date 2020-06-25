@@ -1033,18 +1033,15 @@ function res_input_door(val) {
     var debug_btn = 0;
 
     if(l_dec_val&0x01) {
-//        input_door = 1;
-        input_door = 0;
+       input_door = 1;
     }
 
     if(l_dec_val&0x02) {
-//        output_door = 1;
-        output_door = 0;
+       output_door = 1;
     }
 
     if(l_dec_val&0x04) {
-//        safe_door = 1;
-        safe_door = 0;
+       safe_door = 1;
     }
 
     if(l_dec_val&0x08) {
@@ -1362,11 +1359,11 @@ function always_watchdog() {
 
         set_fan(TURN_ON);
     }
-    
+
     if(dry_data_block.state == 'INPUT') {
         set_heater(TURN_OFF, TURN_OFF, TURN_OFF);
     }
-    
+
     else if(dry_data_block.state == 'HEAT') {
         if(parseFloat(dry_data_block.external_temp) < 280.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
             set_heater(TURN_ON, TURN_ON, TURN_ON);
@@ -1536,7 +1533,7 @@ function core_watchdog() {
         else if(dryer_event & EVENT_START_BTN_LONG) {
             dryer_event &= ~EVENT_START_BTN_LONG;
         }
-        /*else if(dryer_event & EVENT_INPUT_DOOR_OPEN) {
+        else if(dryer_event & EVENT_INPUT_DOOR_OPEN) {
             dryer_event &= ~EVENT_INPUT_DOOR_OPEN;
         }
         else if(dryer_event & EVENT_INPUT_DOOR_CLOSE) {
@@ -1544,29 +1541,24 @@ function core_watchdog() {
         }
         else if(dryer_event & EVENT_OUTPUT_DOOR_OPEN) {
             dryer_event &= ~EVENT_OUTPUT_DOOR_OPEN;
-
             dry_data_block.debug_message = 'Close output door';
             pre_debug_message = '';
             print_lcd_debug_message();
-
             set_buzzer();
             output_door_delay_count = 1;
         }
         else if(dryer_event & EVENT_OUTPUT_DOOR_CLOSE) {
             dryer_event &= ~EVENT_OUTPUT_DOOR_CLOSE;
-
             dry_data_block.debug_message = ' ';
             pre_debug_message = '';
             print_lcd_debug_message();
         }
         else if(dryer_event & EVENT_SAFE_DOOR_OPEN) {
             dryer_event &= ~EVENT_SAFE_DOOR_OPEN;
-
             dry_data_block.debug_message = 'Close safe door';
             pre_debug_message = '';
             print_lcd_debug_message();
             set_buzzer();
-
             safe_door_delay_count = 1;
         }
         else if(dryer_event & EVENT_SAFE_DOOR_CLOSE) {
@@ -1574,7 +1566,7 @@ function core_watchdog() {
             dry_data_block.debug_message = ' ';
             pre_debug_message = '';
             print_lcd_debug_message();
-        }*/
+        }
         else {
             if (dry_data_block.safe_door == 0) {
                 safe_door_delay_count = 0;
