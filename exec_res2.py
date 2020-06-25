@@ -27,8 +27,8 @@ Debug_switch_pin = 4
 TPR_pin = 6
 Heater_pin = 7
 Stirrer_pin = 8
-Lift_pin = 10
-Lift2_pin = 9
+Lift_pin = 9
+Lift2_pin = 10
 Crusher_pin = 11
 Cleaning_Pump_pin = 12
 Circulator_pin = 13
@@ -53,13 +53,13 @@ def stirrer(val):
 
 #---Lift----------------------------------------------------------------
 def lift(val):
-	if (val == 0):
+	if (val == -1):
 		ctl.DOUT(Lift_pin,1)
 		ctl.DOUT(Lift2_pin,0)
 	elif (val == 1):
 		ctl.DOUT(Lift_pin,0)
 		ctl.DOUT(Lift2_pin,0)
-	elif (val == -1):
+	elif (val == 0):
 		ctl.DOUT(Lift_pin,0)
 		ctl.DOUT(Lift2_pin,1)
 
