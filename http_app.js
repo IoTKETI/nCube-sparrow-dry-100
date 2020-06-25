@@ -1033,15 +1033,18 @@ function res_input_door(val) {
     var debug_btn = 0;
 
     if(l_dec_val&0x01) {
-        input_door = 1;
+//        input_door = 1;
+        input_door = 0;
     }
 
     if(l_dec_val&0x02) {
-        output_door = 1;
+//        output_door = 1;
+        output_door = 0;
     }
 
     if(l_dec_val&0x04) {
-        safe_door = 1;
+//        safe_door = 1;
+        safe_door = 0;
     }
 
     if(l_dec_val&0x08) {
