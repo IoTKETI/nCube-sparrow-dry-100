@@ -1536,7 +1536,7 @@ function core_watchdog() {
         else if(dryer_event & EVENT_START_BTN_LONG) {
             dryer_event &= ~EVENT_START_BTN_LONG;
         }
-        else if(dryer_event & EVENT_INPUT_DOOR_OPEN) {
+        /*else if(dryer_event & EVENT_INPUT_DOOR_OPEN) {
             dryer_event &= ~EVENT_INPUT_DOOR_OPEN;
         }
         else if(dryer_event & EVENT_INPUT_DOOR_CLOSE) {
@@ -1574,7 +1574,7 @@ function core_watchdog() {
             dry_data_block.debug_message = ' ';
             pre_debug_message = '';
             print_lcd_debug_message();
-        }
+        }*/
         else {
             if (dry_data_block.safe_door == 0) {
                 safe_door_delay_count = 0;
