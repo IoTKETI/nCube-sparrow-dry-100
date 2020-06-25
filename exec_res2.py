@@ -218,7 +218,8 @@ def core_func():
 		if (while_count > period):
 			while_count = 0
 			
-			l_dec_val = ctl.DIN(0)
+#			l_dec_val = ctl.DIN(0)
+			l_dec_val = 0
 			
 # 			print("\n")
 # 			print(l_dec_val&0x1f)
