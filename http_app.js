@@ -292,6 +292,14 @@ function retrieve_my_cnt_name(callback) {
                 dry_data_block.loadcell_ref_weight = parseFloat(parseFloat(dry_info.loadcell_ref_weight.toString()).toFixed(1));
             }
 
+            if(dry_info.hasOwnProperty('ref_external_temp')) {
+                dry_data_block.ref_external_temp = parseFloat(parseFloat(dry_info.ref_external_temp.toString()).toFixed(1));
+            }
+
+            if(dry_info.hasOwnProperty('ref_internal_temp')) {
+                dry_data_block.ref_internal_temp = parseFloat(parseFloat(dry_info.ref_internal_temp.toString()).toFixed(1));
+            }
+
             MQTT_SUBSCRIPTION_ENABLE = 1;
             sh_state = 'crtct';
             setTimeout(http_watchdog, normal_interval);
@@ -609,6 +617,8 @@ try {
 }
 catch (e) {
     dry_data_block.state = 'INIT';
+    dry_data_block.ref_internal_temp = 80.0;
+    dry_data_block.ref_external_temp = 280.0;
     dry_data_block.internal_temp = 0.0;
     dry_data_block.external_temp = 0.0;
     dry_data_block.cur_weight = 0.0;
@@ -1365,7 +1375,7 @@ function always_watchdog() {
     }
 
     else if(dry_data_block.state == 'HEAT') {
-        if(parseFloat(dry_data_block.external_temp) < 280.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
+        if(parseFloat(dry_data_block.external_temp) < dry_data_block.ref_external_temp && parseFloat(dry_data_block.internal_temp) < dry_data_block.ref_internal_temp) {
             set_heater(TURN_ON, TURN_ON, TURN_ON);
         }
         else {
@@ -1990,7 +2000,7 @@ function core_watchdog() {
             dryer_event &= ~EVENT_SAFE_DOOR_CLOSE;
         }
         else {
-            if(parseFloat(dry_data_block.external_temp) < 280.0 && parseFloat(dry_data_block.internal_temp) < 80.0) {
+            if(parseFloat(dry_data_block.external_temp) < dry_data_block.ref_external_temp && parseFloat(dry_data_block.internal_temp) < dry_data_block.ref_internal_temp) {
                 set_heater(TURN_ON, TURN_ON, TURN_ON);
                 set_stirrer(TURN_ON);
             }
