@@ -299,6 +299,10 @@ function retrieve_my_cnt_name(callback) {
             if(dry_info.hasOwnProperty('ref_internal_temp')) {
                 dry_data_block.ref_internal_temp = parseFloat(parseFloat(dry_info.ref_internal_temp.toString()).toFixed(1));
             }
+            
+            if(dry_info.hasOwnProperty('ref_elapsed_time')) {
+                dry_data_block.ref_elapsed_time = parseFloat(parseFloat(dry_info.ref_elapsed_time.toString()).toFixed(1));
+            }
 
             MQTT_SUBSCRIPTION_ENABLE = 1;
             sh_state = 'crtct';
@@ -619,6 +623,7 @@ catch (e) {
     dry_data_block.state = 'INIT';
     dry_data_block.ref_internal_temp = 80.0;
     dry_data_block.ref_external_temp = 280.0;
+    dry_data_block.ref_elapsed_time = 5.0;
     dry_data_block.internal_temp = 0.0;
     dry_data_block.external_temp = 0.0;
     dry_data_block.cur_weight = 0.0;
@@ -2018,7 +2023,7 @@ function core_watchdog() {
 
             cur_weight = parseFloat(dry_data_block.cur_weight) - parseFloat(dry_data_block.pre_weight)
 
-            if (cur_weight <= parseFloat(dry_data_block.tar_weight3) || dry_data_block.elapsed_time > (5*60*60)) {
+            if (cur_weight <= parseFloat(dry_data_block.tar_weight3) || dry_data_block.elapsed_time > (parseInt(dry_data_block.ref_elapsed_time)*60*60)) {
                 dry_data_block.cum_weight += dry_data_block.ref_weight;
 
                 //console.log('heater 0');
