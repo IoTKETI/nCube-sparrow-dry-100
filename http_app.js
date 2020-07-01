@@ -616,8 +616,36 @@ dry_mqtt_connect('localhost', 1883, dry_noti_topic);
 ///////////////////////////////////////////////////////////////////////////////
 
 var dry_data_block = {};
+dry_data_block.state = 'INIT';
+dry_data_block.ref_internal_temp = 80.0;
+dry_data_block.ref_external_temp = 280.0;
+dry_data_block.ref_elapsed_time = 5.0;
+dry_data_block.internal_temp = 0.0;
+dry_data_block.external_temp = 0.0;
+dry_data_block.cur_weight = 0.0;
+dry_data_block.ref_weight = 0.0;
+dry_data_block.pre_weight = 0.0;
+dry_data_block.tar_weight1 = 0.0;
+dry_data_block.tar_weight2 = 0.0;
+dry_data_block.tar_weight3 = 0.0;
+dry_data_block.cum_weight = 0.0;
+dry_data_block.cum_ref_weight = 900;
+dry_data_block.input_door = 0;
+dry_data_block.output_door = 0;
+dry_data_block.safe_door = 0;
+dry_data_block.operation_mode = 0;
+dry_data_block.debug_mode = 0;
+dry_data_block.start_btn = 0;
+dry_data_block.stirrer_mode = 0;
+dry_data_block.elapsed_time = 0;
+dry_data_block.debug_message = 'INIT';
+dry_data_block.loadcell_factor = 1841;
+dry_data_block.loadcell_ref_weight = 20;
+dry_data_block.correlation_value = 4.6;
+dry_data_block.my_sortie_name = 'disarm';
+
 try {
-    dry_data_block = JSON.parse(fs.readFileSync('ddb.json', 'utf8'));
+    Object.assign(dry_data_block, JSON.parse(fs.readFileSync('ddb.json', 'utf8')));
 }
 catch (e) {
     dry_data_block.state = 'INIT';
